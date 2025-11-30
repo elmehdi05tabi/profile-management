@@ -55,7 +55,7 @@
         </div>
         <div class="mb-3">
             <label for="" class="form-label">Image</label>
-            <input type="file" name="ilage" class="form-control" />
+            <input type="file" name="image" class="form-control" value="<?php echo e(old('image')); ?>" />
         </div>
         <div>
             <button type="submit" class="btn btn-primary btn-block w-100">Modifier</button>

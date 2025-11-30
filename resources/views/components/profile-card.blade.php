@@ -1,6 +1,6 @@
 <div class="col-sm-4 my-5">
     <div class="card">
-        <img class="card-img-top" src="https://picsum.photos/100/60" alt="Card image cap" />
+        <img class="card-img-top" src="{{asset("storage/".$profile->image)}}" alt="Card image cap" />
         <div class="card-body">
             <h4 class="card-title">{{$profile->name}}</h4>
             <p class="card-text">{{Str::limit($profile->bio,50)}}</p>
