@@ -30,9 +30,9 @@
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
     <?php endif; ?>
-    <form action="<?php echo e(route('profile.update', $profile->id)); ?>" method="POST" enctype="multipart/form-data">
+    <form action="<?php echo e(route('profiles.update', $profile->id)); ?>" method="POST" enctype="multipart/form-data">
         <?php echo method_field('PUT'); ?>
-        <?php echo csrf_field(); ?>
+        
         <div class="mb-3">
             <label for="" class="form-label">Nom</label>
             <input type="text" name="name" class="form-control" value="<?php echo e(old('name', $profile->name)); ?>" />

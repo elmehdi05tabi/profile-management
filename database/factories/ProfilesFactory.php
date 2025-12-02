@@ -20,7 +20,8 @@ class ProfilesFactory extends Factory
             'name'=>$this->faker->name(),
             'email'=>$this->faker->unique()->safeEmail(),
             'password'=>$this->faker->password(8,32) ,
-            'bio'=>$this->faker->text(200)
+            'bio'=>$this->faker->text(200) ,
+            'image'=>'profile/profile.png'
         ];
     }
 }

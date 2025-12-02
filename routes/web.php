@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\homeController ;
+use App\Http\Controllers\homeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\settingController;
@@ -16,22 +16,27 @@ use App\Http\Controllers\settingController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// ^ les routes pour affichage creation suppression modification sur un profiles utilisateurs 
+// Route::name('profile.')->prefix('profiles')->group(function() {
+//     Route::controller(profileController::class)->group(function () {
+//         Route::get('/','index')->name('index') ; 
+//         Route::get('/create','create')->name('create'); 
+//         Route::post('/','store')->name('store'); 
+//         Route::delete('/{profiles}','destroy')->name('destroy') ;
+//         Route::get('/{profile}/edit','edit')->name('edit') ; 
+//         Route::put('/{profile}','update')->name('update') ; 
+//         Route::get('/{profiles}','show')->where('profiles','\d+')->name('show'); 
+//     }) ;
+// }) ; 
+Route::resource('profiles', profileController::class);
+Route::get('/', [homeController::class, 'index'])->name('home')->middleware('auth');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'show'])->name('login.show');
+    Route::post('/login', [LoginController::class, 'login'])->name('login');
+});
+Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout')->middleware('auth');
+Route::get('/settings', [settingController::class, 'index'])->name('settings.index'); 
 
-Route::get('/',[homeController::class,'index'])->name('home');
-Route::get('/login',[LoginController::class,'show'])->name('login.show') ; 
-Route::post('/login',[LoginController::class,'login'])->name('login') ; 
-Route::get('/logout',[LoginController::class,'logout'])->name('login.logout') ; 
-Route::get('/profiles',[profileController::class,'index'])->name('profiles.index') ; 
-Route::get('/profiles/{profiles}',[profileController::class,'show'])
-->where('profiles','\d+')
-->name('profile.show'); 
-Route::get('/settings',[settingController::class,'index'])->name('settings.index'); 
-Route::get('/profiles/create',[profileController::class,'create'])->name('create'); 
-Route::post('profiles/store',[profileController::class,'store'])->name('store'); 
-Route::delete('profiles/{profiles}',[profileController::class,'destroy'])
-->name('profile.destroy') ;
-Route::get('profiles/{profile}/edit',[profileController::class,'edit'])->name('profile.edit') ; 
-Route::put('profiles/{profile}',[profileController::class,'update'])->name('profile.update') ; 
 // Route::get('/salam/{nom}/{prenom}',function (Request $request){
 //     return view('/salam',[
 //         'nom'=> $request->route('nom'),

@@ -9,9 +9,9 @@
             </ul>
         </x-alert>
     @endif
-    <form action="{{ route('profile.update', $profile->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('profiles.update', $profile->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
-        @csrf
+        
         <div class="mb-3">
             <label for="" class="form-label">Nom</label>
             <input type="text" name="name" class="form-control" value="{{ old('name', $profile->name) }}" />

@@ -7,7 +7,7 @@
         <li class="nav-item"><a class="nav-link text-light" href="{{ route('profiles.index') }}">Tous Les Profiles</a>
         </li>
         <li class="nav-item"><a class="nav-link text-light" href="{{ route('settings.index') }}">Information</a></li>
-        <li class="nav-item"><a class="nav-link text-light" href="{{ route('create') }}">Ajouter Profiles</a></li>
+        <li class="nav-item"><a class="nav-link text-light" href="{{ route('profiles.create') }}">Ajouter Profiles</a></li>
     </ul>
     @auth
     <div class="dropdown open">

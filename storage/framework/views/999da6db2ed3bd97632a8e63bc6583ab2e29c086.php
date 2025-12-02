@@ -7,13 +7,20 @@
 <?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['title' => 'profile']); ?>
-    <h2>profile</h2>
-    <?php echo e($profiles->id); ?>
-
-    <?php echo e($profiles->name); ?>
-
-    <?php echo e($profiles->email); ?>
-
+    <div class="container-fluid ">
+        <div class="row ">
+            <div class="card p-5 text-center">
+                <img class="card-img-top w-25 mx-auto circele" src="<?php echo e(asset("storage/".$profile->image)); ?>" alt="Title" />
+                <div class="card-body">
+                    <h4 class="card-title">#<?php echo e($profile->id); ?> <?php echo e($profile->name); ?></h4>
+                    <p class="card-text">Email : <a href="mailto:<?php echo e($profile->email); ?>"><?php echo e($profile->email); ?></a></p>
+                    <p class="card-text"><?php echo e($profile->created_at->format('d-m-Y')); ?></p>
+                    <p class="card-text"><?php echo e($profile->bio); ?></p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>

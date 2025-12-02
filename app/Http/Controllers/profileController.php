@@ -9,16 +9,20 @@ use Illuminate\Support\Facades\Hash;
 
 class profileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only('store') ;
+    }
     public function index()
     {
         $profiles = Profiles::paginate(9);
         return view('profiles.index', compact('profiles'));
     }
-    public function show(Profiles $profiles)
+    public function show(Profiles $profile)
     {
         // $id = (int)$req->id ; 
         // $profiles = Profiles::find($id) ; 
-        return view('profiles.show', compact('profiles'));
+        return view('profiles.show', compact('profile'));
     }
     public function create()
     {
@@ -44,16 +48,18 @@ class profileController extends Controller
         // dd($formField) ; 
         // ! pour changée le façon d'ecrire le mot de pass sur database = cribtage
         $formField['password'] = Hash::make($formField['password']);
-        if($req->hasFile('image')) {
+        if ($req->hasFile('image') != NULL) {
             $formField['image'] = $req->file('image')->store('profile', 'public');
+        } else {
+            $formField['image'] = "profile/profile.png";
         }
         // insertion 
         Profiles::create($formField);
         return redirect()->route('profiles.index')->with('success', 'Votre Compte Est Bien Crée.');
     }
-    public function destroy(Profiles $profiles)
+    public function destroy(Profiles $profile)
     {
-        $profiles->delete();
+        $profile->delete();
         return to_route('profiles.index')->with('success', "le profile bien suprimer");
     }
     public function edit(Profiles $profile)
@@ -64,10 +70,10 @@ class profileController extends Controller
     {
         $formField = $req->validated();
         $formField['password'] = Hash::make($formField['password']);
-        if($req->hasFile('image')) {
+        if ($req->hasFile('image')) {
             $formField['image'] = $req->file('image')->store('profile', 'public');
         }
         $profile->fill($formField)->save();
-        return to_route('profile.update', $profile->id)->with('success', 'le profile à bien ètè modifier');
+        return to_route('profiles.update', $profile->id)->with('success', 'le profile à bien ètè modifier');
     }
 }

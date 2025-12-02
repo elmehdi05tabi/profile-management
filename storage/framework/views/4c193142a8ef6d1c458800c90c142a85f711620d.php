@@ -7,7 +7,7 @@
         <li class="nav-item"><a class="nav-link text-light" href="<?php echo e(route('profiles.index')); ?>">Tous Les Profiles</a>
         </li>
         <li class="nav-item"><a class="nav-link text-light" href="<?php echo e(route('settings.index')); ?>">Information</a></li>
-        <li class="nav-item"><a class="nav-link text-light" href="<?php echo e(route('create')); ?>">Ajouter Profiles</a></li>
+        <li class="nav-item"><a class="nav-link text-light" href="<?php echo e(route('profiles.create')); ?>">Ajouter Profiles</a></li>
     </ul>
     <?php if(auth()->guard()->check()): ?>
     <div class="dropdown open">

@@ -10,6 +10,7 @@ class Profiles extends Model
 {
     use HasFactory;
     use SoftDeletes ; 
+    protected $dates = ['create_at'] ; 
     protected $fillable = [
         'name',
         'email',
@@ -17,4 +18,7 @@ class Profiles extends Model
         'bio',
         'image'
     ];
+    public function getImageAttribute ($value) {
+        return $value??'/' ;
+    }
 }
