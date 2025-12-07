@@ -5,11 +5,15 @@
         <li class="nav-item"><a class="nav-link text-light" href="{{ route('login.show') }}">Se Connecter</a></li>    
         @endguest
         <li class="nav-item"><a class="nav-link text-light" href="{{ route('profiles.index') }}">Tous Les Profiles</a>
+        <li class="nav-item"><a class="nav-link text-light" href="{{ route('publications.index') }}">Tous Les Publications</a>
         </li>
         <li class="nav-item"><a class="nav-link text-light" href="{{ route('settings.index') }}">Information</a></li>
         <li class="nav-item"><a class="nav-link text-light" href="{{ route('profiles.create') }}">Ajouter Profiles</a></li>
     </ul>
     @auth
+    <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link text-light" href="{{ route('publications.create') }}">Ajouter Publication</a></li>
+    </ul>
     <div class="dropdown open">
         <button
             class="btn btn-secondary dropdown-toggle"

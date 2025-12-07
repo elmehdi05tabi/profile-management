@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class profileController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->only('store') ;
-    }
-    public function index()
+    public function index() 
     {
         $profiles = Profiles::paginate(9);
         return view('profiles.index', compact('profiles'));

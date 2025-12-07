@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
+    
     public function show()
     {
         return view('login.show');
@@ -29,12 +30,14 @@ class LoginController extends Controller
             ])->onlyInput('login');
         };
     }
-    public function logout(Request $request)
-    {
-        // suprimer la session 
-        Session::flush();
-        // ! déconnection
-        Auth::logout();
-            return to_route('login')->with('success', 'Vous êtes bien déconnecté');
-    }
+   public function logout(Request $request)
+{
+    Auth::logout(); // logout propre
+
+    $request->session()->invalidate(); // invalide la session actuelle
+    $request->session()->regenerateToken(); // régénère le token CSRF
+
+    return to_route('login')->with('success', 'Vous êtes bien déconnecté');
+}
+
 }

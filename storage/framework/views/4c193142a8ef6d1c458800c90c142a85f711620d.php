@@ -5,11 +5,15 @@
         <li class="nav-item"><a class="nav-link text-light" href="<?php echo e(route('login.show')); ?>">Se Connecter</a></li>    
         <?php endif; ?>
         <li class="nav-item"><a class="nav-link text-light" href="<?php echo e(route('profiles.index')); ?>">Tous Les Profiles</a>
+        <li class="nav-item"><a class="nav-link text-light" href="<?php echo e(route('publications.index')); ?>">Tous Les Publications</a>
         </li>
         <li class="nav-item"><a class="nav-link text-light" href="<?php echo e(route('settings.index')); ?>">Information</a></li>
         <li class="nav-item"><a class="nav-link text-light" href="<?php echo e(route('profiles.create')); ?>">Ajouter Profiles</a></li>
     </ul>
     <?php if(auth()->guard()->check()): ?>
+    <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link text-light" href="<?php echo e(route('publications.create')); ?>">Ajouter Publication</a></li>
+    </ul>
     <div class="dropdown open">
         <button
             class="btn btn-secondary dropdown-toggle"
