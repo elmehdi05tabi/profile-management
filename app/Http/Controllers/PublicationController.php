@@ -67,7 +67,7 @@ class PublicationController extends Controller
      * @param  \App\Models\Publication  $publication
      * @return \Illuminate\Http\Response
      */
-    public function edit(Publication $publication)
+    public function edit(Publication $publication,Request $request)
     {
         // autorisation
         // * Gates (routes)
@@ -75,7 +75,8 @@ class PublicationController extends Controller
     //    !if(!Gate::allows("updtae-publication",$publication)){
     //     ! abort(404) ;
     //    !}
-    Gate::authorize('updtae-publication',$publication) ;
+    // Gate::authorize('update',$publication) ;
+    $this->authorize('update',$publication) ; 
         return view("publication.edit",compact('publication')) ;
     }
 

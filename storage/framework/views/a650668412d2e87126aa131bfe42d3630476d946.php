@@ -7,8 +7,8 @@
 <?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['title' => 'HomePage']); ?>
-
-    <h1 class="text-3xl font-bold mb-6 text-center">Home Page</h1>
+    <h1 class="text-center">Home Page</h1>
+    <h3>Vous étes Vistier le site <?php echo e($c); ?> Fois</h3>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>

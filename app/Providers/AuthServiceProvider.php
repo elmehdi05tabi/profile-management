@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Profiles;
 use App\Models\Publication;
+use App\Policies\publicationPolicy;
 use Illuminate\Auth\GenericUser;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -16,7 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Publication::class => publicationPolicy::class,
     ];
 
     /**
@@ -27,9 +28,10 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Gate::define('updtae-publication',function (GenericUser $profile,Publication $publication) {
-            return $profile->id === $publication->profiles_id;
-        });
+        
+        // Gate::define('updtae-publication',function (GenericUser $profile,Publication $publication) {
+        //     return $profile->id === $publication->profiles_id;
+        // });
         //
     }
 }

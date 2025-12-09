@@ -1,4 +1,4 @@
 <x-master title="HomePage">
-
-    <h1 class="text-3xl font-bold mb-6 text-center">Home Page</h1>
+    <h1 class="text-center">Home Page</h1>
+    <h3>Vous étes Vistier le site {{$c}} Fois</h3>
 </x-master>

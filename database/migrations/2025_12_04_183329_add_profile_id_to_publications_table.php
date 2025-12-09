@@ -20,10 +20,14 @@ return new class extends Migration
     mant to many 
     */
     {
-        Schema::table('publications', function (Blueprint $table) {
-            $table->unsignedBigInteger('profiles_id') ;
-            $table->foreign('profiles_id')->references('id')->on('profiles')->cascadeOnDelete() ;
-        });
+   Schema::table('publications', function (Blueprint $table) {
+    $table->unsignedBigInteger('profiles_id');
+    $table->foreign('profiles_id')
+          ->references('id')
+          ->on('profiles')
+          ->onDelete('cascade'); // important
+});
+
     }
 
     /**

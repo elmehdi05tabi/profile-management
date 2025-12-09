@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Profiles;
 use App\Models\User;
 use App\Models\publication;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -52,9 +53,9 @@ class publicationPolicy
      * @param  \App\Models\publication  $publication
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(GenericUser $user, publication $publication)
+    public function update(Profiles $user, publication $publication)
     {
-        return $user->id === $publication->profiles_id ; 
+        return $user->id === $publication->profiles_id; 
     }
 
     /**
@@ -66,7 +67,8 @@ class publicationPolicy
      */
     public function delete(User $user, publication $publication)
     {
-        //
+        return $user->id === $publication->profiles_id ; 
+        
     }
 
     /**
@@ -91,5 +93,5 @@ class publicationPolicy
     public function forceDelete(User $user, publication $publication)
     {
         //
-    }
+    } 
 }

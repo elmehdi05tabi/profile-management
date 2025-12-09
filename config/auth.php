@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Profiles;
+use Symfony\Component\HttpKernel\Profiler\Profile;
+
 return [
 
     /*
@@ -66,8 +69,9 @@ return [
         ],
 
         'users' => [
-            'driver' => 'database',
+            'driver' => 'eloquent',
             'table' => 'profiles',
+            'model'=> Profiles::class
         ],
     ],
 

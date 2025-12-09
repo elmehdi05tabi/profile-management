@@ -5,19 +5,32 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Http\Request;
 use App\Models\Profiles;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 
 class profileController extends Controller
 {
     public function index() 
     {
-        $profiles = Profiles::paginate(9);
+        // $profiles = Profiles::paginate(9);
+        $profiles = Cache::remember('profiles',30,function(){
+            return Profiles::paginate(9) ; 
+        });
         return view('profiles.index', compact('profiles'));
     }
-    public function show(Profiles $profile)
+    public function show(string $id)
     {
-        // $id = (int)$req->id ; 
-        // $profiles = Profiles::find($id) ; 
+        $profilePrefix = 'profile_'.$id ; 
+        // if(Cache::has($profilePrefix)) {
+        //     $profile = Cache::get($profilePrefix) ;
+        // }else {
+        //     $profile  = Profiles::findOrFail($id) ; 
+        //     Cache::put($profilePrefix,$profile,240) ;
+        // }; 
+        // !"👇";
+        $profile = Cache::remember($profilePrefix,10,function() use ($id){
+            return Profiles::findOrFail($id) ;
+        });
         return view('profiles.show', compact('profile'));
     }
     public function create()
